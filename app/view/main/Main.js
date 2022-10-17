@@ -11,11 +11,11 @@ Ext.define('SuperQuicks.view.main.Main', {
         'SuperQuicks.view.main.MainController',
         'SuperQuicks.view.main.MainModel',
         'SuperQuicks.view.main.windowMessage.listMessage',
-
+        'SuperQuicks.view.main.task.list'
     ],
 
     xtype: 'app-main',
-    
+    cls:'colorHeaderHome',
     controller: 'main',
     viewModel: {
         type: 'main'
@@ -64,6 +64,41 @@ Ext.define('SuperQuicks.view.main.Main', {
                 {
                     xtype:'button',
                     text:'Task',
+                    enableToggle: true,
+                    listeners:{
+                        toggle(button, pressed, e) {
+                            // console.log('button')
+                           
+                            if(pressed){
+                                let createView = Ext.create('SuperQuicks.view.main.task.list', {
+                                    width:500,
+                                    height:500,
+                                    itemId:'taskdata',
+                                    closable:true,
+                                    listeners:{
+                                        beforeclose(){
+                                            button.pressed=false
+                                        }
+                                    }
+                                });
+                                console.log('tekan')
+                                createView.show()
+                            }
+                            else{
+                                console.log('lepas')
+                                console.log(Ext.ComponentQuery.query('#taskdata')[0])
+                                Ext.ComponentQuery.query('#taskdata')[0].destroy()
+                            }
+                        },
+                    },
+                    // handler(button){
+                    //     let createView = Ext.create('SuperQuicks.view.main.task.list', {
+                    //         width:500,
+                    //         height:500,
+                    //         closable:true,
+                    //     });
+                    //     createView.show()
+                    // }
                 }
             ]
         }]

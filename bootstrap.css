@@ -16,4 +16,23 @@
     background-size: 35px; background-repeat: no-repeat; background-position: top 0px center;
     border-style: none;
 }
+.task{
+    background-image: url("icon/task.png");
+    background-size: 14px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
+.time{
+    background-image: url("icon/time.png");
+    background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
+.editable{
+    background-image: url("icon/editable.png");
+    background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
+.colorPanel .x-panel-header {
+    background-color: #FFFFFF;
+}
+
 img {border-style: none;}
