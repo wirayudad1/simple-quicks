@@ -26,6 +26,11 @@
     background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
     border-style: none;
 }
+.ellipsis{
+    background-image: url("icon/ellipsis.png");
+    background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
 .editable{
     background-image: url("icon/editable.png");
     background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;

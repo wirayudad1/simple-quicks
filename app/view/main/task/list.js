@@ -89,6 +89,8 @@ Ext.define('SuperQuicks.view.main.task.list', {
                                     message:''
                                 }
                                 task_panel.add(me.createPanel(value,''))
+                                task_panel.scrollBy(0, 999999, true);
+
                             }
         
                         },
@@ -277,6 +279,9 @@ Ext.define('SuperQuicks.view.main.task.list', {
                                                     cmp.setDisabled(true)
                                                 }
                                             });
+                                            // cmp.getEl().on('click', function () {
+                                            //     Ext.getCmp(value.id_text).setValue(true);
+                                            // });
                                         }
                                     }
                                 },

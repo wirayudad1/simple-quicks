@@ -1,6 +1,9 @@
 
 Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
     extend          : 'Ext.window.Window',
+    requires: [
+        'SuperQuicks.view.main.windowMessage.message'
+    ],
     initComponent () {
 
         Ext.apply(this, {
@@ -71,33 +74,9 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             {
                 title   :'Check Task',
                 date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan',
+                name    :'Rudi Akhsan, Toman Rakhasa',
                 message :'Your Task has been added'
             },
-            {
-                title   :'Check Task',
-                date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan',
-                message :'Your Task has been added'
-            },
-            {
-                title   :'Check Task',
-                date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan',
-                message :'Your Task has been added'
-            },
-            {
-                title   :'Check Task',
-                date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan',
-                message :'Your Task has been added'
-            },
-            {
-                title   :'Check Task',
-                date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan',
-                message :'Your Task has been added'
-            }
         ]
         let container=Ext.create('Ext.container.Container',{
             height:400,
@@ -163,9 +142,16 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             ],
             listeners:{
                 afterrender: function(el, layout, eOpts){
-                    console.log(el);
+                    console.log(el.down('container'));
                     $( "#" + el.id ).click(function() {
-                        console.log('ok')
+                        let createView = Ext.create('SuperQuicks.view.main.windowMessage.message', {
+                            width:500,
+                            height:500,
+                            closable:true,
+                        });
+                        me.close()
+                        console.log('tekan')
+                        createView.show()
                     });
                 }
             }
