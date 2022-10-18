@@ -4,13 +4,41 @@ Ext.define('SuperQuicks.view.main.windowMessage.message', {
     date_previous   :null,
     total_message:0,
     initComponent () {
-
+        let me=this;
         Ext.apply(this, {
             layout: 'fit',
-            iconCls:'message',
             items: [
                 this.createList()
             ],
+            header: {
+                xtype: 'header',
+                titlePosition: 1,
+                defaults: {
+                    margin: '0 0 0 0'
+                },
+                items: [
+                    {
+                        xtype: 'button',
+                        iconCls:'back',
+                        style:
+                        {
+                                backgroundColor: '#3992D3',
+                                'background-image': 'none',
+                                borderColor:'#3992D3',
+                        },
+                        handler(){
+                            let createView = Ext.create('SuperQuicks.view.main.windowMessage.listMessage', {
+                                width:500,
+                                height:500,
+                                closable:true,
+                            });
+                            me.close()
+                            console.log('tekan')
+                            createView.show()
+                        }
+                    }
+                ]
+            },
             // bbar:[
             //     '->',
             //

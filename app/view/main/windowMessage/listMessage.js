@@ -68,14 +68,17 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             {
                 title   :'Naturalization',
                 date    :'1 Januari 2021 19:20',
-                name    :'Rakhmat',
+                name    :'Rakhmat,Budi',
+                total   :'2 Participant',
                 message :'please check out'
             },
             {
                 title   :'Check Task',
                 date    :'4 Januari 2021 20:20',
-                name    :'Rudi Akhsan, Toman Rakhasa',
+                name    :'Aldi,Subqi',
+                total   :'2 Participant',
                 message :'Your Task has been added'
+
             },
         ]
         let container=Ext.create('Ext.container.Container',{
@@ -84,13 +87,13 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             autoScroll:true,
         })
         data.map((value)=>{
-            let list=me.createPanel(value.title,value.date,value.name,value.message)
+            let list=me.createPanel(value)
             container.add(list)
         })
         this.setLoading(false)
         me.panelMessage.add(container)
     },
-    createPanel(title,date,name,message) {
+    createPanel(value) {
         let me = this;
         me.containerMessage=Ext.create('Ext.container.Container',{
             width:'96%',
@@ -118,21 +121,28 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
                         {
                             xtype:'container',
                             padding:4,
+                            type:name,
                             layout:{
                                 type:'vbox'
                             },
                             items:[
                                 {
                                     xtype:'label',
-                                    html:`<b style="color:#3098F2;font-size:15px">${title}</b><b style="margin-left: 8px;color:#A7A7A7">${date}</b>`,
+                                    html:`<b style="color:#3098F2;font-size:15px">${value.title}</b><b style="margin-left: 8px;color:#A7A7A7">${value.date}</b>`,
                                 },
                                 {
                                     xtype:'label',
-                                    html:`<b>${name}:</b>`
+                                    html:`<b>${value.name}:</b>`
                                 },
                                 {
                                     xtype:'label',
-                                    html:`${message}`
+                                    html:`${value.message}`
+                                },
+                                {
+                                    xtype:'label',
+                                    hidden:true,
+                                    type:value.name,
+                                    text:value.total
                                 },
 
                             ]
@@ -143,6 +153,7 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             listeners:{
                 afterrender: function(el, layout, eOpts){
                     console.log(el.down('container'));
+                    let data=el.down('container').config.items[1].items[3]
                     $( "#" + el.id ).click(function() {
                         let createView = Ext.create('SuperQuicks.view.main.windowMessage.message', {
                             width:500,

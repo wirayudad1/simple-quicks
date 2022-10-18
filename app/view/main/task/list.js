@@ -2,6 +2,7 @@
 Ext.define('SuperQuicks.view.main.task.list', {
     extend          : 'Ext.window.Window',
     total_task:null,
+    total_urgent:0,
     initComponent () {
         let me=this
         Ext.apply(this, {
@@ -223,6 +224,40 @@ Ext.define('SuperQuicks.view.main.task.list', {
                                     }
                                    // html: '<img class="time" width="25" height="25" style="border-style:none;border:0px;border-color:#FFFFFF">'
                                 },
+                                {
+                                    xtype:'button',
+                                    margin:'49 0 0 8',
+                                    arrowVisible:false,
+                                    iconCls:'copy',
+                                    style:{
+                                        backgroundColor: '#FFFFFF',
+                                        'background-image': 'none',
+                                        borderColor:'#FFFFFF',
+                                        cursor:'auto',
+                                    },
+                                    menu: {
+                                        items: [
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Important ASAP</span>',
+                                                type:'important_asap',
+                                                name:'Important ASAP',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Virtual Meeting</span>',
+                                                type:'virtual_meeting',
+                                                name:'Virtual Meeting',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            }
+                                        ]
+                                    }
+                                  
+                                   // html: '<img class="time" width="25" height="25" style="border-style:none;border:0px;border-color:#FFFFFF">'
+                                },
 
                             ]
                         },
@@ -285,6 +320,15 @@ Ext.define('SuperQuicks.view.main.task.list', {
                                         }
                                     }
                                 },
+                                {
+                                    xtype:'container',
+                                    itemId:`list_urgent-${value.id_text}`,
+                                    width:'90%',
+                                    autoScroll:true,
+                                    layout:{
+                                        type:'hbox'
+                                    },
+                                }
 
                             ]
                         }
@@ -312,5 +356,47 @@ Ext.define('SuperQuicks.view.main.task.list', {
         //         </div>`
         // });
     },
+    createListUrgent(data,idcontainer){
+        let me=this
+        console.log(data.type)
+        let button=Ext.create('Ext.button.Button',{
+            iconCls:'close',
+            margin:'2 0 0 2',
+            height:15,
+            itemId:`button-${data.type}-${idcontainer}`,
+            style:{
+                backgroundColor: '#F7BF1D',
+                'background-image': 'none',
+                borderColor:'#F7BF1D',
+            },
+            handler(button){
+                //button.hide()
+                button.hide();
+                Ext.ComponentQuery.query(`#containurgent-${data.type}-${idcontainer}`)[0].hide()
+
+            }
+        })
+        let container=Ext.create('Ext.container.Container',{
+            margin:8,
+            height:22,
+            itemId:`containurgent-${data.type}-${idcontainer}`,
+            layout:{
+                type:'hbox'
+            },
+            style:{
+                'background-color': '#F7BF1D',
+                color             :'#FFFFFF',
+                borderRadius      : '4px',
+            },
+            items:[
+                {
+                    xtype:'label',
+                    margin:'2 0 0 4',
+                    html:`<span style="font-size:10px;font-weight:bold;">${data.name}</span>`
+                },button
+            ]
+        })
+        Ext.ComponentQuery.query(`#list_urgent-${idcontainer}`)[0].add(container)
+    }
   
 });

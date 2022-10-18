@@ -36,6 +36,21 @@
     background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
     border-style: none;
 }
+.copy{
+    background-image: url("icon/copy.png");
+    background-size: 15px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
+.back{
+    background-image: url("icon/back.png");
+    background-size: 20px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
+.close{
+    background-image: url("icon/close.png");
+    background-size: 12px; background-repeat: no-repeat; background-position: top 0px center;
+    border-style: none;
+}
 .colorPanel .x-panel-header {
     background-color: #FFFFFF;
 }
