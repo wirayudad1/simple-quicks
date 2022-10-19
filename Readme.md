@@ -6,4 +6,4 @@ be sure to read below before deciding what can be deleted and what needs to be
 kept in source control.
 
 The following files are all needed to build and load the application.
- - Open 'Index.html' on browser for see the result
+ - Open 'Index.html' on browser for see the result (because when using netlify has error JQUERY not defined for Message Features)
