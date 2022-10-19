@@ -252,7 +252,47 @@ Ext.define('SuperQuicks.view.main.task.list', {
                                                 handler(button){
                                                     me.createListUrgent(button,value.id_text)
                                                 }
-                                            }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Offline Meeting</span>',
+                                                type:'offline_meeting',
+                                                name:'Offline Meeting',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">ASAP</span>',
+                                                type:'asap',
+                                                name:'ASAP',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Self Task</span>',
+                                                type:'self_task',
+                                                name:'Self Task',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Appointments</span>',
+                                                type:'appointment',
+                                                name:'Appointments',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
+                                            {
+                                                text:'<span style="color: #0D0D0D;">Court Related</span>',
+                                                type:'court_related',
+                                                name:'Court Related',
+                                                handler(button){
+                                                    me.createListUrgent(button,value.id_text)
+                                                }
+                                            },
                                         ]
                                     }
                                   
@@ -377,7 +417,7 @@ Ext.define('SuperQuicks.view.main.task.list', {
             }
         })
         let container=Ext.create('Ext.container.Container',{
-            margin:8,
+            margin:'8 8 8 4',
             height:22,
             itemId:`containurgent-${data.type}-${idcontainer}`,
             layout:{

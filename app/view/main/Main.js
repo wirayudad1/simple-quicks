@@ -51,19 +51,63 @@ Ext.define('SuperQuicks.view.main.Main', {
                 '->',
                 {
                     xtype:'button',
-                    text:'Message',
-                    handler(button){
-                        let createView = Ext.create('SuperQuicks.view.main.windowMessage.listMessage', {
-                            width:500,
-                            height:500,
-                            closable:true,
-                        });
-                        createView.show()
-                    }
+                    iconCls:'messageMain',
+                    margin:'0 8 0 0',
+                    height:40,
+                    width:40,
+                    style:{
+                        backgroundColor: '#8086F2',
+                        'background-image': 'none',
+                        borderColor:'#8086F2',
+                        boxShadow: 'rgb(0 0 0 / 25%) 0px 0px 7px',
+                        borderRadius:'20px',
+                    },
+                    enableToggle: true,
+                    listeners:{
+                        toggle(button,pressed,e){
+                            if(pressed){
+                                let createView = Ext.create('SuperQuicks.view.main.windowMessage.listMessage', {
+                                    width:500,
+                                    height:500,
+                                    itemId:'taskdata',
+                                    closable:true,
+                                    listeners:{
+                                        beforeclose(){
+                                            button.pressed=false
+                                        }
+                                    }
+                                });
+                                console.log('tekan')
+                                createView.show()
+                            }
+                            else{
+                                console.log('lepas')
+                                console.log(Ext.ComponentQuery.query('#taskdata')[0])
+                                Ext.ComponentQuery.query('#taskdata')[0].destroy()
+                            }
+                        }
+                    },
+                    // handler(button){
+                    //     let createView = Ext.create('SuperQuicks.view.main.windowMessage.listMessage', {
+                    //         width:500,
+                    //         height:500,
+                    //         closable:true,
+                    //     });
+                    //     createView.show()
+                    // }
                 },
                 {
                     xtype:'button',
-                    text:'Task',
+                    iconCls:'taskMain',
+                    height:40,
+                    width:40,
+                    style:{
+                        backgroundColor: '#8086F2',
+                        'background-image': 'none',
+                        borderColor:'#8086F2',
+                        boxShadow: 'rgb(0 0 0 / 25%) 0px 0px 7px',
+                        borderRadius:'20px',
+                    },
                     enableToggle: true,
                     listeners:{
                         toggle(button, pressed, e) {
