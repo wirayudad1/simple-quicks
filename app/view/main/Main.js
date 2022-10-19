@@ -117,6 +117,7 @@ Ext.define('SuperQuicks.view.main.Main', {
                                 let createView = Ext.create('SuperQuicks.view.main.task.list', {
                                     width:500,
                                     height:500,
+                                    list_urgent:[],
                                     itemId:'taskdata',
                                     closable:true,
                                     listeners:{

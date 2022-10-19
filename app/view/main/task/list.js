@@ -3,6 +3,7 @@ Ext.define('SuperQuicks.view.main.task.list', {
     extend          : 'Ext.window.Window',
     total_task:null,
     total_urgent:0,
+    list_urgent:[],
     initComponent () {
         let me=this
         Ext.apply(this, {
@@ -397,8 +398,19 @@ Ext.define('SuperQuicks.view.main.task.list', {
         // });
     },
     createListUrgent(data,idcontainer){
-        let me=this
+        let me=this,
+            same=false;
         console.log(data.type)
+        if(me.list_urgent!=0)
+        {
+            me.list_urgent.map((value)=>{
+                if(value==`${data.type}-${idcontainer}`){
+                    same=true
+                }
+            })
+        }
+   
+        console.log(me.list_urgent)
         let button=Ext.create('Ext.button.Button',{
             iconCls:'close',
             margin:'2 0 0 2',
@@ -411,32 +423,41 @@ Ext.define('SuperQuicks.view.main.task.list', {
             },
             handler(button){
                 //button.hide()
+                function removeItem(arr, item){
+                    return arr.filter(f => f !== item)
+                }
+                me.list_urgent = removeItem( me.list_urgent,`${data.type}-${idcontainer}`);
+                console.log(me.list_urgent)
                 button.hide();
                 Ext.ComponentQuery.query(`#containurgent-${data.type}-${idcontainer}`)[0].hide()
 
             }
         })
-        let container=Ext.create('Ext.container.Container',{
-            margin:'8 8 8 4',
-            height:22,
-            itemId:`containurgent-${data.type}-${idcontainer}`,
-            layout:{
-                type:'hbox'
-            },
-            style:{
-                'background-color': '#F7BF1D',
-                color             :'#FFFFFF',
-                borderRadius      : '4px',
-            },
-            items:[
-                {
-                    xtype:'label',
-                    margin:'2 0 0 4',
-                    html:`<span style="font-size:10px;font-weight:bold;">${data.name}</span>`
-                },button
-            ]
-        })
-        Ext.ComponentQuery.query(`#list_urgent-${idcontainer}`)[0].add(container)
+        if(same==false){
+            me.list_urgent.push(`${data.type}-${idcontainer}`)
+            let container=Ext.create('Ext.container.Container',{
+                margin:'8 8 8 4',
+                height:22,
+                itemId:`containurgent-${data.type}-${idcontainer}`,
+                layout:{
+                    type:'hbox'
+                },
+                style:{
+                    'background-color': '#F7BF1D',
+                    color             :'#FFFFFF',
+                    borderRadius      : '4px',
+                },
+                items:[
+                    {
+                        xtype:'label',
+                        margin:'2 0 0 4',
+                        html:`<span style="font-size:10px;font-weight:bold;">${data.name}</span>`
+                    },button
+                ]
+            })
+            Ext.ComponentQuery.query(`#list_urgent-${idcontainer}`)[0].add(container)
+        }
+    
     }
   
 });
