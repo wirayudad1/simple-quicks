@@ -154,9 +154,15 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
                 afterrender: function(el, layout, eOpts){
                     console.log(el.down('container'));
                     let data=el.down('container').config.items[1].items[3]
+                    console.log(data)
                     $( "#" + el.id ).click(function() {
                         let createView = Ext.create('SuperQuicks.view.main.windowMessage.message', {
                             width:500,
+                            title:`
+                            <span style="margin-left:8px">${data.type}</span><br>
+                            <span style="margin-left:8px;font-size:10px;color:#262626">${data.text}</span>
+
+                            `,
                             height:500,
                             closable:true,
                         });
