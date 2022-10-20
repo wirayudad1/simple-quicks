@@ -38,20 +38,38 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
                 {
                     xtype:'container',
                     width:'100%',
+                    margin:8,
+                    style:{
+                        borderStyle:'solid',
+                        borderWidth:'1px',
+                        borderRadius: '4px',
+                        'border-color':'#95A5A6'
+                    },
                     layout:{
                         type:'hbox'
                     },
                     items:[
                         {
                             xtype:'textfield',
-                            width:'85%',
-                            margin:8,
+                            width:'95%',
+                            cls:'searchBorder',
+                            margin:2,
+                            style:{
+                                'border-style':'none',
+                                'border-width':'0px',
+                            },
                             emptyText: 'Search',   
                         },
                         {
                             xtype:'button',
-                            text:'Search',
-                            margin:'8 8 8 4',
+                            iconCls:'search',
+                            style:
+                            {
+                                backgroundColor: '#FFFFFF',
+                                'background-image': 'none',
+                                borderColor:'#FFFFFF',
+                             },
+                            margin:2,
         
                         },
                     ]
@@ -100,11 +118,9 @@ Ext.define('SuperQuicks.view.main.windowMessage.listMessage', {
             region:'center',
             margin:'8 8 8 8',
             style:{
-                borderStyle: 'solid',
-                borderColor: '#FFFFFF',
-                borderRadius: '4px',
+                'border-bottom': 'solid',
+                borderColor:'#C8C8C8',
                 cursor:'pointer',
-                boxShadow: 'rgb(0 0 0 / 25%) 0px 0px 4px',
             },
             items:[
                {
